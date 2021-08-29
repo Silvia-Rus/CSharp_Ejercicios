@@ -1,0 +1,7 @@
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej1a10_ConceptosBasicos\Ej1a10_ConceptosBasicos\Ejercicio09\bin\Debug\Ejercicio09.exe.config
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej1a10_ConceptosBasicos\Ej1a10_ConceptosBasicos\Ejercicio09\bin\Debug\Ejercicio09.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej1a10_ConceptosBasicos\Ej1a10_ConceptosBasicos\Ejercicio09\bin\Debug\Ejercicio09.pdb
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej1a10_ConceptosBasicos\Ej1a10_ConceptosBasicos\Ejercicio09\obj\Debug\Ejercicio09.csproj.AssemblyReference.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej1a10_ConceptosBasicos\Ej1a10_ConceptosBasicos\Ejercicio09\obj\Debug\Ejercicio09.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej1a10_ConceptosBasicos\Ej1a10_ConceptosBasicos\Ejercicio09\obj\Debug\Ejercicio09.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej1a10_ConceptosBasicos\Ej1a10_ConceptosBasicos\Ejercicio09\obj\Debug\Ejercicio09.pdb
