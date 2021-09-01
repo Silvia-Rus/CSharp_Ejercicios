@@ -1,0 +1,7 @@
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej11a15_MetodosEstaticos\Ejercicio15\Ejercicio15\bin\Debug\Ejercicio15.exe.config
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej11a15_MetodosEstaticos\Ejercicio15\Ejercicio15\bin\Debug\Ejercicio15.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej11a15_MetodosEstaticos\Ejercicio15\Ejercicio15\bin\Debug\Ejercicio15.pdb
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej11a15_MetodosEstaticos\Ejercicio15\Ejercicio15\obj\Debug\Ejercicio15.csproj.AssemblyReference.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej11a15_MetodosEstaticos\Ejercicio15\Ejercicio15\obj\Debug\Ejercicio15.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej11a15_MetodosEstaticos\Ejercicio15\Ejercicio15\obj\Debug\Ejercicio15.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej11a15_MetodosEstaticos\Ejercicio15\Ejercicio15\obj\Debug\Ejercicio15.pdb
