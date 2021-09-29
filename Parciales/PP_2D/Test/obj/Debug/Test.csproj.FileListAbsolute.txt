@@ -1,0 +1,10 @@
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\bin\Debug\Test.exe.config
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\bin\Debug\Test.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\bin\Debug\Test.pdb
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\bin\Debug\Entidades.dll
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\bin\Debug\Entidades.pdb
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\obj\Debug\Test.csproj.AssemblyReference.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\obj\Debug\Test.csproj.CopyComplete
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\obj\Debug\Test.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Test\obj\Debug\Test.pdb
