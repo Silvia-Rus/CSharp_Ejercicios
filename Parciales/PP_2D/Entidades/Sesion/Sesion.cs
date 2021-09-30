@@ -8,7 +8,7 @@ namespace Entidades
 {
     public abstract class Sesion
     {
-        private static int nextId = 0;
+        private static int nextId = 1;
         private int id;
         private Puesto puesto;
         private Cliente cliente;
@@ -27,6 +27,9 @@ namespace Entidades
             this.Duracion = 0; // en minutos
             this.Costo = 0;
             nextId++;
+
+            this.Puesto.Estado = Enumerados.EstadoPuesto.EnUso;
+            this.Cliente.Estado = Enumerados.EstadoCliente.ubicado;
         }
 
         public int Id { get => id; }
@@ -36,8 +39,6 @@ namespace Entidades
         public DateTime HoraFinal { get => horaFinal; set => horaFinal = value; }
         public int Duracion { get => duracion; set => duracion = value; }
         public abstract double Costo { get; set; }
-
-        
 
         public override string ToString()
         {

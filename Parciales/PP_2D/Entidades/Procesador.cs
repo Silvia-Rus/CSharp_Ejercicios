@@ -32,46 +32,67 @@ namespace Entidades
             this.clientes.Add(cliente);
         }
 
+        //poner a cliente en cola
+
 
         public bool AbrirSesion(Puesto puesto, Cliente cliente, Enumerados.TiposDeSesion tipo, String numero) 
         {
             bool retorno = false;
 
-            switch (tipo)
+            if(cliente.Estado == Enumerados.EstadoCliente.esperando && puesto.Estado == Enumerados.EstadoPuesto.Libre)
             {
-                case Enumerados.TiposDeSesion.conexion:
-                    if (cliente == (Computadora)puesto)
-                    {
-                        Conexion conexion = new Conexion(puesto, cliente);
-                        this.sesiones.Add(conexion);
-                        retorno = true;
-                    }
-                    break;
-                case Enumerados.TiposDeSesion.llamada:
-                    if(numero.Length == 12)
-                    {
-                        Llamada llamada = new Llamada(puesto, cliente, numero);
-                        this.sesiones.Add(llamada);
-                        retorno = true;                       
-                    }
-                    break;
+                switch (tipo)
+                {
+                    case Enumerados.TiposDeSesion.conexion:
+                        if (cliente == (Computadora)puesto)
+                        {
+                            Conexion conexion = new Conexion(puesto, cliente);
+                            this.sesiones.Add(conexion);
+                            retorno = true;
+                        }
+                        break;
+                    case Enumerados.TiposDeSesion.llamada:
+                        if (numero.Length == 12)
+                        {
+                            Llamada llamada = new Llamada(puesto, cliente, numero);
+                            this.sesiones.Add(llamada);
+                            retorno = true;
+                        }
+                        break;
+                }
             }
+            
             return retorno;
         }
 
 
-        public void CerrarSesion(Sesion sesion)
+        public bool CerrarSesion(Sesion sesion)
         {
-            int i = 0;
-            foreach (Sesion item in this.sesiones)
+            bool retorno = false;
+
+            if(sesion.Puesto.Estado == Enumerados.EstadoPuesto.EnUso && sesion.Cliente.Estado == Enumerados.EstadoCliente.ubicado)
             {
-                if(item == sesion)
+                sesion.Puesto.Estado = Enumerados.EstadoPuesto.Libre;
+                sesion.Cliente.Estado = Enumerados.EstadoCliente.fuera;
+                sesion.HoraFinal = DateTime.Now;
+                sesion.Costo = sesion.Puesto.CalculoCosto(sesion);
+                foreach (Sesion item in this.sesiones)
                 {
-                    Historico.Sesiones.Add(sesion);
-                    this.sesiones.RemoveAt(i);
+                    if (item == sesion)
+                    {
+                       
+                        
+                        Historico.Sesiones.Add(sesion);
+                        this.sesiones.Remove(sesion);
+                        retorno = true;
+
+                    }
+               
                 }
-                i++;
             }
+
+            return retorno;
+           
         }
 
 

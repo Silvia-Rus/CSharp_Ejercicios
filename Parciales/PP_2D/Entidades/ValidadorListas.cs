@@ -58,7 +58,7 @@ namespace Entidades
         #region juegos
 
         //devuelve el índice en el que está el juego
-        public static int ExisteJuego(List<Enumerados.Juegos> lista, Enumerados.Juegos juego)
+        private static int ExisteJuego(List<Enumerados.Juegos> lista, Enumerados.Juegos juego)
         {
             bool existe = false;
             int i = 0;
@@ -83,7 +83,7 @@ namespace Entidades
             }
         }
 
-        public static bool SonIgualesListasJuegos(List<Enumerados.Juegos> listaUno, List<Enumerados.Juegos> listaDos)
+        public static bool SonIgualesListasJuegos(List<Enumerados.Juegos> listaUno, List<Enumerados.Juegos> listaDos) //
         {
             bool retorno = true;
 
@@ -96,6 +96,30 @@ namespace Entidades
                 }
 
             }
+            return retorno;
+        }
+
+        public static bool AniadirJuego(List<Enumerados.Juegos> listaJuegos, Enumerados.Juegos juego)
+        {
+            bool retorno = false;
+
+            if (ValidadorListas.ExisteJuego(listaJuegos, juego) == -1)
+            {
+                listaJuegos.Add(juego);
+            }
+
+            return retorno;
+        }
+
+        public static bool BorrarJuego(List<Enumerados.Juegos> listaJuegos, Enumerados.Juegos juego)
+        {
+            bool retorno = false;
+           
+            if(ValidadorListas.ExisteJuego(listaJuegos, juego) > -1)
+            {
+                listaJuegos.Remove(juego);
+            }
+
             return retorno;
         }
 
@@ -144,6 +168,31 @@ namespace Entidades
             return retorno;
         }
 
+        public static bool AniadirPeriferico(List<Enumerados.Perifericos> listaPerifericos,  Enumerados.Perifericos periferico)
+        {
+            bool retorno = false;
+
+            if (ValidadorListas.ExistePeriferico(listaPerifericos, periferico) == -1)
+            {
+                listaPerifericos.Add(periferico);
+            }
+
+            return retorno;
+        }
+
+        public static bool BorrarPeriferico(List<Enumerados.Perifericos> listaPerifericos, Enumerados.Perifericos periferico)
+        {
+            bool retorno = false;
+
+            if(ValidadorListas.ExistePeriferico(listaPerifericos, periferico) > -1)
+            {
+                listaPerifericos.Remove(periferico);
+                retorno = true;
+            }
+            
+            return retorno;
+        }
+
         #endregion
 
         #region características
@@ -157,9 +206,9 @@ namespace Entidades
         {
             bool retorno = false;
 
-            if(diccionarioUno[Enumerados.CaracteristicasComputadora.placaDeVideo] == diccionarioDos[Enumerados.CaracteristicasComputadora.placaDeVideo] &&
-                diccionarioUno[Enumerados.CaracteristicasComputadora.procesador] == diccionarioDos[Enumerados.CaracteristicasComputadora.procesador] &&
-                diccionarioUno[Enumerados.CaracteristicasComputadora.ram] == diccionarioDos[Enumerados.CaracteristicasComputadora.ram])
+            if((diccionarioUno[Enumerados.CaracteristicasComputadora.placaDeVideo] == null  || diccionarioUno[Enumerados.CaracteristicasComputadora.placaDeVideo] == diccionarioDos[Enumerados.CaracteristicasComputadora.placaDeVideo]) &&
+               (diccionarioUno[Enumerados.CaracteristicasComputadora.procesador] == null || diccionarioUno[Enumerados.CaracteristicasComputadora.procesador] == diccionarioDos[Enumerados.CaracteristicasComputadora.procesador]) &&
+               (diccionarioUno[Enumerados.CaracteristicasComputadora.ram] == null || diccionarioUno[Enumerados.CaracteristicasComputadora.ram] == diccionarioDos[Enumerados.CaracteristicasComputadora.ram]))
             {
                 retorno = true;
             }

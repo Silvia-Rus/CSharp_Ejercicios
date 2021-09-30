@@ -26,16 +26,39 @@ namespace Entidades
         public List<Enumerados.Juegos> JuegoNecesita { get => juegoNecesita; }
         public Enumerados.EstadoCliente Estado { get => estado; set => estado = value; }
 
+
+        public Cliente(string dni, string nombre, string apellido, int edad)
+        {
+            this.dni = dni;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.edad = edad;
+            this.programaNecesita = new List<Enumerados.Programas>();
+            this.juegoNecesita = new List<Enumerados.Juegos>();
+            this.caracteristicasNecesita = new Dictionary<Enumerados.CaracteristicasComputadora, string>();
+            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.procesador, null);
+            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.ram, null);
+            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.placaDeVideo, null);
+            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.procesador, null);
+            this.estado = Enumerados.EstadoCliente.esperando;
+        }
+
+
+
         public static bool operator ==(Cliente cliente, Computadora computadora)
         {
             bool retorno = false;
+            bool sonIgualesJuegos = ValidadorListas.SonIgualesListasJuegos(cliente.JuegoNecesita, computadora.Juego);
+            bool sonIgualesPogramas = ValidadorListas.SonIgualesListasProgramas(cliente.ProgramaNecesita, computadora.Programa);
+            bool sonIgualesCaracteristicas = ValidadorListas.SonIgualesCaracteristicas(cliente.caracteristicasNecesita, computadora.Caracteristicas);
 
-            if(ValidadorListas.SonIgualesListasJuegos(cliente.JuegoNecesita, computadora.Juego) &&
-               ValidadorListas.SonIgualesListasProgramas(cliente.ProgramaNecesita, computadora.Programa) &&
-               ValidadorListas.SonIgualesCaracteristicas(cliente.caracteristicasNecesita, computadora.Caracteristicas))
+            if ((cliente.programaNecesita.Count == 0 || sonIgualesPogramas) &&
+                (cliente.JuegoNecesita.Count == 0 || sonIgualesJuegos) &&
+                sonIgualesCaracteristicas)
             {
                 retorno = true;
             }
+
             return retorno;
         }
 
@@ -87,24 +110,71 @@ namespace Entidades
 
             if(this.Estado==(Enumerados.EstadoCliente.esperando) || this.Estado == (Enumerados.EstadoCliente.ubicado))
             {
+                               
                 sb.AppendLine("REQUERIMIENTOS: ");
 
-                sb.AppendLine($"Programas instalados:");
-                foreach (Enumerados.Programas item in this.ProgramaNecesita)
+                
+                if(this.programaNecesita.Count == 0)
                 {
-                    sb.AppendLine($"--> {item}");
+                    sb.AppendLine("(Sin requerimientos sobre programas.)");
+                }
+                else
+                {
+                    sb.AppendLine($"Programas requeridos:");
+                    foreach (Enumerados.Programas item in this.ProgramaNecesita)
+                    {
+                        sb.AppendLine($"--> {item}");
+                    }
+                }
+                
+                if(this.JuegoNecesita.Count == 0)
+                {
+                    sb.AppendLine("(Sin requerimientos sobre Juegos.)");
+
+                }
+                else
+                {
+                    sb.AppendLine($"Juegos requeridos:");
+                    foreach (Enumerados.Juegos item in this.JuegoNecesita)
+                    {
+                        sb.AppendLine($"--> {item}");
+                    }
                 }
 
-                sb.AppendLine($"Juegos:");
-                foreach (Enumerados.Juegos item in this.JuegoNecesita)
+                if(this.caracteristicasNecesita.Count == 0)
                 {
-                    sb.AppendLine($"--> {item}");
-                }
+                    sb.AppendLine("(Sin requerimientos sobre la máquina.)");
 
-                sb.AppendLine($"Características compu:");
-                sb.AppendLine($"Procesador: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador]}");
-                sb.AppendLine($"Ram: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.ram]}");
-                sb.AppendLine($"Placa de video: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.placaDeVideo]}");
+                }
+                else
+                {
+                    sb.AppendLine($"Características compu:");
+                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador] != null)
+                    {
+                        sb.AppendLine($"Procesador: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador]}");
+
+                    }
+
+                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador] != null)
+                    {
+                        sb.AppendLine($"Procesador: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador]}");
+                    }
+
+                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.ram] != null)
+                    {
+                        sb.AppendLine($"Ram: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.ram]}");
+
+                    }
+
+                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.placaDeVideo] != null)
+                    {
+                        sb.AppendLine($"Placa de video: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.placaDeVideo]}");
+
+                    }
+
+                    sb.AppendLine("------------------------------------------");
+
+                }              
 
             }
             return sb.ToString();

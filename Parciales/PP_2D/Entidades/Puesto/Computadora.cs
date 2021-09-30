@@ -62,55 +62,7 @@ namespace Entidades
             return retorno;
         }
 
-        public bool AniadirJuego(Enumerados.Juegos juego)
-        {
-            bool retorno = false;
-
-            if (ValidadorListas.ExisteJuego(this.juegos, juego) == -1)
-            {
-                this.juegos.Add(juego);
-            }
-
-            return retorno;
-        }
-
-        public bool BorrarJuego(Enumerados.Juegos juego)
-        {
-            bool retorno = false;
-            int i = ValidadorListas.ExisteJuego(this.juegos, juego);
-
-            if(i > -1)
-            {
-                this.juegos.RemoveAt(i);
-                retorno = true;
-            }
-            return retorno;
-        }
-
-        public bool AniadirPeriferico(Enumerados.Perifericos periferico)
-        {
-            bool retorno = false;
-
-            if (ValidadorListas.ExistePeriferico(this.perifericos, periferico) == -1)
-            {
-                this.perifericos.Add(periferico);
-            }
-
-            return retorno;
-        }
-
-        public bool BorrarPeriferico(Enumerados.Perifericos periferico)
-        {
-            bool retorno = false;
-            int i = ValidadorListas.ExistePeriferico(this.perifericos, periferico);
-
-            if (i > -1)
-            {
-                this.perifericos.RemoveAt(i);
-                retorno = true;
-            }
-            return retorno;
-        }
+       
 
 
         /// <summary>
