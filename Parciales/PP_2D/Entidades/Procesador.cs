@@ -14,7 +14,7 @@ namespace Entidades
         private List<Sesion> sesiones;
         private List<Puesto> puestos;
         private List<Cliente> clientes;
-
+        private Historico historico;
 
         //hacer todo lo del singleton
 
@@ -33,6 +33,8 @@ namespace Entidades
         }
 
         //poner a cliente en cola
+
+
 
 
         public bool AbrirSesion(Puesto puesto, Cliente cliente, Enumerados.TiposDeSesion tipo, String numero) 
@@ -80,8 +82,7 @@ namespace Entidades
                 {
                     if (item == sesion)
                     {
-                       
-                        
+                                             
                         Historico.Sesiones.Add(sesion);
                         this.sesiones.Remove(sesion);
                         retorno = true;

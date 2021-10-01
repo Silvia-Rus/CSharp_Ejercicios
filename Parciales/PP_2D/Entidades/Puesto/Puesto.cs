@@ -65,7 +65,7 @@ namespace Entidades
             return sb.ToString();
         }
 
-        abstract public double CalculoCosto(Sesion sesion);
+        abstract  public double CalculoCosto(Sesion sesion);
 
 
     }
