@@ -23,6 +23,21 @@ namespace Entidades
         public int MinutosDeUso { get => minutosDeUso; set => minutosDeUso = value; }
         public string Id { get => id; }
 
+        public static List<Puesto> FiltroPuestosPorEstado(List<Puesto> lista, Enumerados.EstadoPuesto estado)
+        {
+            List<Puesto> retorno = new List<Puesto>();
+
+            foreach (Puesto item in lista)
+            {
+                if (item.Estado == estado)
+                {
+                    retorno.Add(item);
+                }
+            }
+
+            return retorno;
+        }
+
 
         /// <summary>
         /// Comprueba si dos puestos son iguales comparando sus id.

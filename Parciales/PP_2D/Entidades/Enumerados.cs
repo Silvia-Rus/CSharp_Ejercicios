@@ -18,7 +18,7 @@ namespace Entidades
 
         public enum  EstadoPuesto { Libre, EnUso }
 
-        public enum EstadoCliente { esperando, ubicado, fuera }
+        public enum EstadoCliente { esperandoCabina, esperandoComputadora, ubicadoTelefono, ubicadoComputadora, fuera }
 
         public enum TipoDeLlamada { Local, LargaDistancia, Internacional, NoAsignado }
 

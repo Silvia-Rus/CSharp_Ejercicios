@@ -11,23 +11,80 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Cliente c1 = new Cliente("111", "Kennie", "Bell", 25);
-            Cliente c2 = new Cliente("111", "Cindy", "Nero", 36);
-            Computadora comp1 = new Computadora("Intel", "8GB", "Intel® Iris® Xe Graphics");
+            Cliente c1 = new Cliente("111", "Kennie", "Bell", 25, Enumerados.EstadoCliente.esperandoComputadora);
+            //ValidadorListas.AniadirJuego(c1.JuegoNecesita, Enumerados.Juegos.CounterStrike);
+            //Cliente c2 = new Cliente("111", "Cindy", "Nero", 36);
+            //Computadora comp1 = new Computadora("Intel", "8GB", "Intel® Iris® Xe Graphics");
+            //ValidadorListas.AniadirJuego(comp1.Juego, Enumerados.Juegos.CounterStrike);
+            Cabina cab1 = new Cabina(Enumerados.TiposTelefono.ADisco, "Telefonica");
 
-            ValidadorListas.AniadirJuego(c1.JuegoNecesita, Enumerados.Juegos.AgeOfEmpiresII);
-            ValidadorListas.AniadirJuego(comp1.Juego, Enumerados.Juegos.AgeOfEmpiresII);
-            ValidadorListas.AniadirJuego(comp1.Juego, Enumerados.Juegos.CounterStrike);
+            List<Cliente> listaClientes = new List<Cliente>();
+            List<Puesto> listaPuestos = new List<Puesto>();
 
-            if(c1 == comp1)
+            listaClientes.Add(c1);
+            //listaClientes.Add(c2);
+
+            //listaPuestos.Add(comp1);
+            listaPuestos.Add(cab1);
+
+            Procesador procesador = new Procesador("Rus", listaPuestos, listaClientes);
+
+            //Console.WriteLine(procesador.ToString());
+
+            procesador.AbrirSesion(cab1, c1, Enumerados.TiposDeSesion.llamada, "541234567891");
+
+            
+
+            Console.WriteLine(procesador.ToString());
+
+            if(procesador.CerrarSesion(procesador.Sesiones[0]))
             {
-                Console.WriteLine("SALIÓ BIEN GRACIAS DIOS");
+                Console.WriteLine(procesador.ToString());
             }
             else
             {
-                Console.WriteLine(":(((((((");
+                Console.WriteLine("TEMITA CERRANDO LA SESIÓN");
+            }
+
+            Console.WriteLine("EL HISTÓRICO OJO");
+
+            foreach (Sesion item in Historico.Sesiones)
+            {
+                Console.WriteLine(item.ToString());
+
 
             }
+
+
+            
+
+            
+
+
+            //prueba tipos de llamada
+
+            //larga distancia
+            //Llamada llamada1 = new Llamada(cab1, c1, "5488888888888888888888888888888");
+
+            //Console.WriteLine(llamada1.ToString());
+
+
+
+
+
+            //ValidadorListas.AniadirJuego(c1.JuegoNecesita, Enumerados.Juegos.AgeOfEmpiresII);
+            //ValidadorListas.AniadirJuego(comp1.Juego, Enumerados.Juegos.AgeOfEmpiresII);
+            //ValidadorListas.AniadirJuego(comp1.Juego, Enumerados.Juegos.CounterStrike);
+
+            //if(c1 == comp1)
+            //{
+            //    Console.WriteLine("SALIÓ BIEN GRACIAS DIOS");
+            //}
+            //else
+            //{
+            //    Console.WriteLine(":(((((((");
+
+            //}
 
 
 

@@ -16,55 +16,51 @@ namespace Entidades
         public Llamada(Puesto puesto, Cliente cliente, string numero) : base(puesto, cliente)
         {
             this.Numero = numero;
+            AsignarTipo();
 
         }
 
         public string Numero { get => numero; set => numero = value; }
-        public Enumerados.TipoDeLlamada Tipo 
-        { 
-            get => tipo;
+        public Enumerados.TipoDeLlamada Tipo { get => tipo;}
 
-            set 
+        private void AsignarTipo()
+        {
+            char[] aux = this.numero.ToCharArray();
+
+            if(aux.Length == 12 && long.TryParse(this.numero, out long auxLong))
             {
-                char[] aux = this.numero.ToCharArray();
-                
-                if(aux.Length == 12)
+                if (aux[0].Equals('5') && aux[1].Equals('4'))
                 {
-                    if (aux[0] == 5 && aux[1] == 4)
+                    //llamdas nacionales
+                    if (aux[2].Equals('1') && aux[3].Equals('1'))
                     {
-                        //llamdas nacionales
-                        if (aux[2] == 1 && aux[3] == 1)
-                        {
-                            //locales
-                            tipo = Enumerados.TipoDeLlamada.Local;
-                        }
-                        else
-                        {
-                            tipo = Enumerados.TipoDeLlamada.LargaDistancia;
-                        }
+                        //locales
+                        tipo = Enumerados.TipoDeLlamada.Local;
                     }
                     else
                     {
-                        tipo = Enumerados.TipoDeLlamada.Internacional;
+                        tipo = Enumerados.TipoDeLlamada.LargaDistancia;
                     }
                 }
                 else
                 {
-                    tipo = Enumerados.TipoDeLlamada.NoAsignado;
+                    tipo = Enumerados.TipoDeLlamada.Internacional;
                 }
-               
-                         
             }
-        
+            else
+            {
+                tipo = Enumerados.TipoDeLlamada.NoAsignado;
+            }
+
         }
-        public override double Costo { set => costo =  this.Puesto.CalculoCosto(this) ; get => costo;  }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(base.ToString());
             sb.AppendLine($"Numero: {this.Numero}");
-            sb.AppendLine($"Costo de la llamada: {this.Costo}");           
+            sb.AppendLine($"Costo de la llamada: {this.Costo}");
+            sb.AppendLine($"Tipo de llamada: {this.Tipo}");
             return sb.ToString();
         }
     }

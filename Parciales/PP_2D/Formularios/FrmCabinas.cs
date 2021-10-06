@@ -8,20 +8,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework;
+using Entidades;
 
 
 namespace Formularios
 {
     public partial class FrmCabinas : MetroFramework.Forms.MetroForm
     {
-        public FrmCabinas()
+        Procesador procesador;
+        List<Puesto> listaPuestos;
+        
+        private FrmCabinas()
         {
             InitializeComponent();
+            
+        }
+
+        public FrmCabinas(Procesador procesador) : this()
+        {
+            this.procesador = procesador;
+
+            listaPuestos = new List<Puesto>();
+            listaPuestos = Puesto.FiltroPuestosPorEstado(procesador.Puestos, Enumerados.EstadoPuesto.Libre);
+            this.grdCabinasLibres.DataSource = null;
+            this.grdCabinasLibres.DataSource = listaPuestos;
+
+
+
         }
 
         private void FrmCabinas_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -29,9 +47,5 @@ namespace Formularios
             this.DialogResult = DialogResult.OK;
         }
 
-        private void btnComputadoras_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

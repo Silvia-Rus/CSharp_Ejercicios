@@ -46,20 +46,20 @@ namespace Entidades
      
         public override double CalculoCosto(Sesion conexion)
         {
-            double retorno = 0;
+            double fracciones30Minutos = 0;
        
             if(conexion is Conexion && conexion.Duracion > 0)
             {
-                if(conexion.Duracion%30 == 0)
+                if(conexion.Duracion%30 != 0)
                 {
-                    retorno = (conexion.Duracion / 30) + 1;
+                    fracciones30Minutos = (conexion.Duracion / 30) + 1;
                 }
                 else
                 {
-                    retorno = conexion.Duracion / 30;
+                    fracciones30Minutos = conexion.Duracion / 30;
                 }
             }
-            return retorno;
+            return fracciones30Minutos*0.5f;
         }
 
        

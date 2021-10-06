@@ -22,14 +22,30 @@ namespace Entidades
             this.id = nextId;
             this.Puesto = puesto;
             this.Cliente = cliente;
-            this.horaInicio = DateTime.Now;
+            //this.horaInicio = DateTime.Now;
+            this.horaInicio = new DateTime(2021, 10, 04, 22, 30, 00); 
             this.HoraFinal = default(DateTime);
             this.Duracion = 0; // en minutos
             this.Costo = 0;
             nextId++;
 
             this.Puesto.Estado = Enumerados.EstadoPuesto.EnUso;
-            this.Cliente.Estado = Enumerados.EstadoCliente.ubicado;
+            if(puesto is Cabina)
+            {
+                this.Cliente.Estado = Enumerados.EstadoCliente.ubicadoTelefono;
+
+            }
+            else
+            {
+                this.Cliente.Estado = Enumerados.EstadoCliente.ubicadoComputadora;
+
+            }
+        }
+
+        public  int CalcularDuracion()
+        {
+            TimeSpan duracion = this.horaFinal - this.HoraInicio;
+            return (int)duracion.TotalSeconds;
         }
 
         public int Id { get => id; }
@@ -38,7 +54,10 @@ namespace Entidades
         public DateTime HoraInicio { get => horaInicio;  }
         public DateTime HoraFinal { get => horaFinal; set => horaFinal = value; }
         public int Duracion { get => duracion; set => duracion = value; }
-        public abstract double Costo { get; set; }
+
+        public double Costo { set => costo = value; get => costo; }
+
+
 
         public override string ToString()
         {
@@ -51,12 +70,25 @@ namespace Entidades
             sb.AppendLine($"Hora de inicio: {this.HoraInicio}.");
             if(this.HoraFinal != DateTime.MinValue)
             {
-                sb.AppendLine($"Hora de final: {this.HoraFinal}.");
+                sb.AppendLine($"Duración: {this.Duracion}.");
                 sb.AppendLine($"Hora final: {this.HoraFinal}.");
                 sb.AppendLine($"Costo: {this.Costo}.");
             }
 
             return sb.ToString(); 
+        }
+
+        public string Ticket()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("----------Ticket----------");
+            sb.AppendLine("-----Ciber 'El Vicio'-----");
+            sb.AppendLine($"Tiempo de uso {this.duracion}");
+            sb.AppendLine($"Costo bruto: {this.costo}");
+            sb.AppendLine($"Costo neto: {this.costo * 0,16}");
+
+            return sb.ToString();
+
         }
 
 

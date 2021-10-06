@@ -27,7 +27,7 @@ namespace Entidades
         public Enumerados.EstadoCliente Estado { get => estado; set => estado = value; }
 
 
-        public Cliente(string dni, string nombre, string apellido, int edad)
+        public Cliente(string dni, string nombre, string apellido, int edad, Enumerados.EstadoCliente estado)
         {
             this.dni = dni;
             this.nombre = nombre;
@@ -40,9 +40,23 @@ namespace Entidades
             ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.ram, null);
             ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.placaDeVideo, null);
             ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.procesador, null);
-            this.estado = Enumerados.EstadoCliente.esperando;
+            this.estado = estado;           
         }
 
+        public static List<Cliente> FiltroClientesPorEstado(List<Cliente> lista, Enumerados.EstadoCliente estado)
+        {
+            List<Cliente> retorno = new List<Cliente>();
+
+            foreach (Cliente item in lista)
+            {
+                if(item.Estado == estado)
+                {
+                    retorno.Add(item);
+                }
+            }
+
+            return retorno;
+        }
 
 
         public static bool operator ==(Cliente cliente, Computadora computadora)
@@ -108,7 +122,7 @@ namespace Entidades
             sb.AppendLine($"Edad: {this.Edad}");
             sb.AppendLine($"Estado: {this.Estado}");
 
-            if(this.Estado==(Enumerados.EstadoCliente.esperando) || this.Estado == (Enumerados.EstadoCliente.ubicado))
+            if(this.Estado==(Enumerados.EstadoCliente.esperandoComputadora) || this.Estado == (Enumerados.EstadoCliente.ubicadoComputadora))
             {
                                
                 sb.AppendLine("REQUERIMIENTOS: ");

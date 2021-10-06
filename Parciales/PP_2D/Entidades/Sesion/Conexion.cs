@@ -12,7 +12,6 @@ namespace Entidades
         public Conexion(Puesto puesto, Cliente cliente) : base(puesto, cliente)
         {
         }
-        public override double Costo { set => costo = this.Puesto.CalculoCosto(this); get => costo; }
-
+        
     }
 }

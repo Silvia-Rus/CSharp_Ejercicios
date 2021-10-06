@@ -31,5 +31,19 @@ namespace Formularios
         {
             this.DialogResult = DialogResult.OK;
         }
+
+        private void FrmDirectorio_Load(object sender, EventArgs e)
+        {
+           
+           grdDirectorio.DataSource = null;
+           grdDirectorio.DataSource = listaClientes;
+
+           grdDirectorio.RowHeadersVisible = false;
+           grdDirectorio.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+           grdDirectorio.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+        }
+
+
     }
 }

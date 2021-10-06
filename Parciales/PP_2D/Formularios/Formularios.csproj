@@ -61,6 +61,18 @@
     <Compile Include="FrmComputadoras.Designer.cs">
       <DependentUpon>FrmComputadoras.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDirectorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDirectorio.Designer.cs">
+      <DependentUpon>FrmDirectorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEstadisticas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEstadisticas.Designer.cs">
+      <DependentUpon>FrmEstadisticas.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +92,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmComputadoras.resx">
       <DependentUpon>FrmComputadoras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDirectorio.resx">
+      <DependentUpon>FrmDirectorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEstadisticas.resx">
+      <DependentUpon>FrmEstadisticas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
@@ -109,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{2a4cdeb6-958b-4ac3-a76a-a25605e9adab}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

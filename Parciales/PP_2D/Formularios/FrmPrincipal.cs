@@ -7,36 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entidades;
 
 namespace Formularios
 {
     public partial class FrmPrincipal : MetroFramework.Forms.MetroForm
     {
+        Procesador procesador;
+        
+        
         public FrmPrincipal()
         {
             InitializeComponent();
+
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
+            procesador = Procesador.CargaDatosAutomatica(procesador);
+            this.lblHoraNombre.Text = $"Operador: {procesador.Operador} -- {procesador.Fecha.ToString("dd/MM/yyyy")}";
         }
 
         private void btnCabinas_Click(object sender, EventArgs e)
         {
-            FrmCabinas frmCabinas = new FrmCabinas();
+            FrmCabinas frmCabinas = new FrmCabinas(procesador);
             frmCabinas.ShowDialog();
         }
 
         private void btnComputadoras_Click(object sender, EventArgs e)
         {
-            FrmComputadoras frmComputadoras = new FrmComputadoras();
+            FrmComputadoras frmComputadoras = new FrmComputadoras(procesador);
             frmComputadoras.ShowDialog();
         }
 
         private void btnDirectorio_Click(object sender, EventArgs e)
         {
-            FrmDirectorio frmDirectorio = new FrmDirectorio();
+            FrmDirectorio frmDirectorio = new FrmDirectorio(procesador.Clientes);
             frmDirectorio.ShowDialog();
         }
 
