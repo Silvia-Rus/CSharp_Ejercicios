@@ -13,8 +13,8 @@
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.csproj.CopyComplete
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.exe
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.pdb
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmComputadoras.resources
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Entidades.dll
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Entidades.pdb
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmDirectorio.resources
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmEstadisticas.resources
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmComputadoras.resources

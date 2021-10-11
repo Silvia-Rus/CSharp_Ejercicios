@@ -12,20 +12,92 @@ namespace Entidades
         private string nombre;
         private string apellido;
         private int edad;
-        private List<Enumerados.Programas> programaNecesita;
-        private List<Enumerados.Juegos> juegoNecesita;
+        private int ordenDeLlegadaCabina;
+        private int ordenDeLlegadaComputadora;
+
+        private List<Enumerados.Programas> programasNecesita;
+        private List<Enumerados.Juegos> juegosNecesita;
+
         private Dictionary<Enumerados.CaracteristicasComputadora, string> caracteristicasNecesita;
 
+        private static int nextCabina = 1;
+        private static int nextComputadora = 1;
+
         private Enumerados.EstadoCliente estado;
+
+        public string JuegosNecesitaToString
+        {
+
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (Enumerados.Programas item in this.juegosNecesita)
+                {
+                    sb.Append($"{item.ToString()},");
+                }
+
+                return sb.ToString();
+
+            }
+        }
+
+        public string ProgramasNecesitaToString
+        {
+
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (Enumerados.Programas item in this.programasNecesita)
+                {
+                    sb.Append($"{item.ToString()},");
+                }
+
+                return sb.ToString();
+
+            }
+        }
+
+        public string CaracteristicasNecesitaToString
+        {
+
+            get
+            {
+                if(this.CaracteristicasNecesita.Count > 0)
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    foreach (KeyValuePair<Enumerados.CaracteristicasComputadora, string> item in this.CaracteristicasNecesita)
+                    {
+                        if(!(item.Value is null))
+                        {
+                            sb.Append($"{item},");
+                        }
+                        
+                    }
+
+                    return sb.ToString();
+                }
+                else
+                {
+                    return "null";
+                }
+               
+
+            }
+        }
 
         public string Dni { get => dni; set => dni = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public int Edad { get => edad; set => edad = value; }
-        public List<Enumerados.Programas> ProgramaNecesita { get => programaNecesita; }
-        public List<Enumerados.Juegos> JuegoNecesita { get => juegoNecesita; }
+        public List<Enumerados.Programas> ProgramaNecesita { get => programasNecesita; }
+        public List<Enumerados.Juegos> JuegoNecesita { get => juegosNecesita; }
         public Enumerados.EstadoCliente Estado { get => estado; set => estado = value; }
-
+        public int OrdenDeLlegadaCabina { get => ordenDeLlegadaCabina; set => ordenDeLlegadaCabina = value; }
+        public int OrdenDeLlegadaComputadora { get => ordenDeLlegadaComputadora; set => ordenDeLlegadaComputadora = value; }
+        public Dictionary<Enumerados.CaracteristicasComputadora, string> CaracteristicasNecesita { get => caracteristicasNecesita; set => caracteristicasNecesita = value; }
 
         public Cliente(string dni, string nombre, string apellido, int edad, Enumerados.EstadoCliente estado)
         {
@@ -33,14 +105,41 @@ namespace Entidades
             this.nombre = nombre;
             this.apellido = apellido;
             this.edad = edad;
-            this.programaNecesita = new List<Enumerados.Programas>();
-            this.juegoNecesita = new List<Enumerados.Juegos>();
-            this.caracteristicasNecesita = new Dictionary<Enumerados.CaracteristicasComputadora, string>();
-            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.procesador, null);
-            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.ram, null);
-            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.placaDeVideo, null);
-            ValidadorListas.EditarCaracteristica(this.caracteristicasNecesita, Enumerados.CaracteristicasComputadora.procesador, null);
-            this.estado = estado;           
+            this.programasNecesita = new List<Enumerados.Programas>();
+            this.juegosNecesita = new List<Enumerados.Juegos>();
+            this.CaracteristicasNecesita = new Dictionary<Enumerados.CaracteristicasComputadora, string>();
+            ValidadorListas.EditarCaracteristica(this.CaracteristicasNecesita, Enumerados.CaracteristicasComputadora.procesador, null);
+            ValidadorListas.EditarCaracteristica(this.CaracteristicasNecesita, Enumerados.CaracteristicasComputadora.ram, null);
+            ValidadorListas.EditarCaracteristica(this.CaracteristicasNecesita, Enumerados.CaracteristicasComputadora.placaDeVideo, null);
+            ValidadorListas.EditarCaracteristica(this.CaracteristicasNecesita, Enumerados.CaracteristicasComputadora.procesador, null);
+            this.estado = estado;
+            if(this.estado == Enumerados.EstadoCliente.esperandoCabina)
+            {
+                AsignarOrdenDeLlegadaCabina(this);
+                this.OrdenDeLlegadaComputadora = -1;
+            }
+            else if (this.estado == Enumerados.EstadoCliente.esperandoComputadora)
+            {
+                AsignarOrdenDeLlegadaComputadora(this);
+                this.ordenDeLlegadaCabina = -1;
+            }
+            else
+            {
+                this.OrdenDeLlegadaComputadora = -1;
+                this.ordenDeLlegadaCabina = -1;
+            }
+        }
+
+        public static void AsignarOrdenDeLlegadaCabina(Cliente cliente)
+        {
+            cliente.ordenDeLlegadaCabina = nextCabina;
+            nextCabina++;
+        }
+
+        public static void AsignarOrdenDeLlegadaComputadora(Cliente cliente)
+        {
+            cliente.ordenDeLlegadaComputadora = nextComputadora;
+            nextComputadora++;
         }
 
         public static List<Cliente> FiltroClientesPorEstado(List<Cliente> lista, Enumerados.EstadoCliente estado)
@@ -64,9 +163,9 @@ namespace Entidades
             bool retorno = false;
             bool sonIgualesJuegos = ValidadorListas.SonIgualesListasJuegos(cliente.JuegoNecesita, computadora.Juego);
             bool sonIgualesPogramas = ValidadorListas.SonIgualesListasProgramas(cliente.ProgramaNecesita, computadora.Programa);
-            bool sonIgualesCaracteristicas = ValidadorListas.SonIgualesCaracteristicas(cliente.caracteristicasNecesita, computadora.Caracteristicas);
+            bool sonIgualesCaracteristicas = ValidadorListas.SonIgualesCaracteristicas(cliente.CaracteristicasNecesita, computadora.Caracteristicas);
 
-            if ((cliente.programaNecesita.Count == 0 || sonIgualesPogramas) &&
+            if ((cliente.programasNecesita.Count == 0 || sonIgualesPogramas) &&
                 (cliente.JuegoNecesita.Count == 0 || sonIgualesJuegos) &&
                 sonIgualesCaracteristicas)
             {
@@ -128,7 +227,7 @@ namespace Entidades
                 sb.AppendLine("REQUERIMIENTOS: ");
 
                 
-                if(this.programaNecesita.Count == 0)
+                if(this.programasNecesita.Count == 0)
                 {
                     sb.AppendLine("(Sin requerimientos sobre programas.)");
                 }
@@ -155,7 +254,7 @@ namespace Entidades
                     }
                 }
 
-                if(this.caracteristicasNecesita.Count == 0)
+                if(this.CaracteristicasNecesita.Count == 0)
                 {
                     sb.AppendLine("(Sin requerimientos sobre la máquina.)");
 
@@ -163,26 +262,26 @@ namespace Entidades
                 else
                 {
                     sb.AppendLine($"Características compu:");
-                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador] != null)
+                    if(this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador] != null)
                     {
-                        sb.AppendLine($"Procesador: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador]}");
+                        sb.AppendLine($"Procesador: {this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador]}");
 
                     }
 
-                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador] != null)
+                    if(this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador] != null)
                     {
-                        sb.AppendLine($"Procesador: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador]}");
+                        sb.AppendLine($"Procesador: {this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.procesador]}");
                     }
 
-                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.ram] != null)
+                    if(this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.ram] != null)
                     {
-                        sb.AppendLine($"Ram: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.ram]}");
+                        sb.AppendLine($"Ram: {this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.ram]}");
 
                     }
 
-                    if(this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.placaDeVideo] != null)
+                    if(this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.placaDeVideo] != null)
                     {
-                        sb.AppendLine($"Placa de video: {this.caracteristicasNecesita[Enumerados.CaracteristicasComputadora.placaDeVideo]}");
+                        sb.AppendLine($"Placa de video: {this.CaracteristicasNecesita[Enumerados.CaracteristicasComputadora.placaDeVideo]}");
 
                     }
 

@@ -18,10 +18,9 @@ namespace Entidades
             this.minutosDeUso = 0;
         }
 
-        
+        public string Id { get => id; }
         public Enumerados.EstadoPuesto Estado { get => estado; set => estado = value; }
         public int MinutosDeUso { get => minutosDeUso; set => minutosDeUso = value; }
-        public string Id { get => id; }
 
         public static List<Puesto> FiltroPuestosPorEstado(List<Puesto> lista, Enumerados.EstadoPuesto estado)
         {

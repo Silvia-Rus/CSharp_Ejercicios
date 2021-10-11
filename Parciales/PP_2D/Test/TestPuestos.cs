@@ -18,42 +18,42 @@ namespace Test
             //ValidadorListas.AniadirJuego(comp1.Juego, Enumerados.Juegos.CounterStrike);
             Cabina cab1 = new Cabina(Enumerados.TiposTelefono.ADisco, "Telefonica");
 
-            List<Cliente> listaClientes = new List<Cliente>();
-            List<Puesto> listaPuestos = new List<Puesto>();
+            //List<Cliente> listaClientes = new List<Cliente>();
+            //List<Cabina> listaPuestos = new List<Cabina>();
 
-            listaClientes.Add(c1);
-            //listaClientes.Add(c2);
+            //listaClientes.Add(c1);
+            ////listaClientes.Add(c2);
 
-            //listaPuestos.Add(comp1);
-            listaPuestos.Add(cab1);
+            ////listaPuestos.Add(comp1);
+            //listaPuestos.Add(cab1);
 
-            Procesador procesador = new Procesador("Rus", listaPuestos, listaClientes);
+            ////Procesador procesador = new Procesador("Rus", listaPuestos, listaClientes);
 
-            //Console.WriteLine(procesador.ToString());
+            ////Console.WriteLine(procesador.ToString());
 
-            procesador.AbrirSesion(cab1, c1, Enumerados.TiposDeSesion.llamada, "541234567891");
+            //procesador.AbrirSesion(cab1, c1, Enumerados.TiposDeSesion.llamada, "541234567891");
 
             
 
-            Console.WriteLine(procesador.ToString());
+            //Console.WriteLine(procesador.ToString());
 
-            if(procesador.CerrarSesion(procesador.Sesiones[0]))
-            {
-                Console.WriteLine(procesador.ToString());
-            }
-            else
-            {
-                Console.WriteLine("TEMITA CERRANDO LA SESIÓN");
-            }
+            //if(procesador.CerrarSesion(procesador.Sesiones[0]))
+            //{
+            //    Console.WriteLine(procesador.ToString());
+            //}
+            //else
+            //{
+            //    Console.WriteLine("TEMITA CERRANDO LA SESIÓN");
+            //}
 
-            Console.WriteLine("EL HISTÓRICO OJO");
+            //Console.WriteLine("EL HISTÓRICO OJO");
 
-            foreach (Sesion item in Historico.Sesiones)
-            {
-                Console.WriteLine(item.ToString());
+            //foreach (Sesion item in Historico.Sesiones)
+            //{
+            //    Console.WriteLine(item.ToString());
 
 
-            }
+            //}
 
 
             

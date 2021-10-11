@@ -26,5 +26,7 @@ namespace Entidades
 
         public enum TiposDeSesion { conexion , llamada }
 
+        public enum TiposDePuesto { computadora, cabina }
+
     }
 }

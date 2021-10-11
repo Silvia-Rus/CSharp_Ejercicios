@@ -14,6 +14,7 @@ namespace Entidades
         private List<Enumerados.Juegos> juegos;
         private Dictionary<Enumerados.CaracteristicasComputadora, string> caracteristicas;
 
+  
         public Computadora(string procesador, string ram, string placaDeVideo) : base()
         {
             this.programas = new List<Enumerados.Programas>();
@@ -38,6 +39,57 @@ namespace Entidades
 
 
         public List<Enumerados.Programas> Programa { get => programas; }
+
+        public string ProgramasToString
+        {
+            
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (Enumerados.Programas item in this.programas )
+                {
+                    sb.Append($"{item.ToString()},");
+                }
+
+                return sb.ToString();
+
+            }
+        }
+
+        public string JuegosToString
+        {
+
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (Enumerados.Programas item in this.juegos)
+                {
+                    sb.Append($"{item.ToString()},");
+                }
+
+                return sb.ToString();
+
+            }
+        }
+
+        public string PerifericosToString
+        {
+
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (Enumerados.Programas item in this.perifericos)
+                {
+                    sb.Append($"{item.ToString()},");
+                }
+
+                return sb.ToString();
+
+            }
+        }
         public List<Enumerados.Perifericos> Periferico { get => perifericos; }
         public List<Enumerados.Juegos> Juego { get => juegos; }
         public Dictionary<Enumerados.CaracteristicasComputadora, string> Caracteristicas { get => caracteristicas; }

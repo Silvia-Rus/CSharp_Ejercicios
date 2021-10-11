@@ -11,26 +11,33 @@ namespace Entidades
         private string operador;
         private DateTime fecha;
         //private static Procesador procesador; //esto es para el singleton
-        private List<Sesion> sesiones;
-        private List<Puesto> puestos; //llegan creadas
+        private List<Llamada> llamadas;
+        private List<Conexion> conexiones;
+
+        private List<Cabina> cabinas; //llegan creadas
+        private List<Computadora> computadoras; //llegan creadas
         private List<Cliente> clientes; //llegan creados
 
-        public List<Sesion> Sesiones { get => Sesiones1; set => Sesiones1 = value; }
         public string Operador { get => operador; set => operador = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
-        public List<Sesion> Sesiones1 { get => sesiones; set => sesiones = value; }
-        public List<Puesto> Puestos { get => puestos; set => puestos = value; }
+        public List<Cabina> Cabinas { get => cabinas; set => cabinas = value; }
         public List<Cliente> Clientes { get => clientes; set => clientes = value; }
+        public List<Computadora> Computadoras { get => computadoras; set => computadoras = value; }
+        public List<Llamada> Llamadas { get => llamadas; set => llamadas = value; }
+        public List<Conexion> Conexiones { get => conexiones; set => conexiones = value; }
 
         //hacer todo lo del singleton
 
-        public Procesador(string operador, List<Puesto> puestos, List<Cliente> clientes)
+        public Procesador(string operador, List<Cabina> cabinas, List<Computadora> computadoras, List<Cliente> clientes)
         {
             this.Operador = operador;
-            this.Puestos = puestos;
+            this.Cabinas = cabinas;
+            this.Computadoras = computadoras;
             this.Clientes = clientes;
             this.Fecha = DateTime.Today;
-            this.Sesiones = new List<Sesion>();
+            this.Llamadas = new List<Llamada>();
+            this.Conexiones = new List<Conexion>();
+
         }
 
         public override string ToString()
@@ -41,8 +48,14 @@ namespace Entidades
             sb.AppendLine($"Fecha: {this.Fecha.ToString("dd/MM/yyyy")}");
             
            
-            sb.AppendLine("PUESTOS: ");
-            foreach (Puesto item in this.Puestos)
+            sb.AppendLine("CABINAS: ");
+            foreach (Cabina item in this.Cabinas)
+            {
+                sb.AppendLine($"--> {item.ToString()}");
+            }
+
+            sb.AppendLine("COMPUTADORAS: ");
+            foreach (Computadora item in this.Computadoras)
             {
                 sb.AppendLine($"--> {item.ToString()}");
             }
@@ -51,27 +64,39 @@ namespace Entidades
             {
                 sb.AppendLine($"--> {item.ToString()}");
             }
-            if (this.Sesiones != null)
+            if (this.Llamadas != null)
             {
-                sb.AppendLine("SESIONES:");
-                foreach (Sesion item in this.Sesiones)
+                sb.AppendLine("LLAMADAS:");
+                foreach (Sesion item in this.Llamadas)
                 {
                     sb.AppendLine($"--> {item.ToString()}");
                 }
             }
             else
             {
-                sb.AppendLine("No hay sesiones abiertas.");
+                sb.AppendLine("No hay llamadas.");
             }
 
+            if (this.Conexiones != null)
+            {
+                sb.AppendLine("CONEXIONES:");
+                foreach (Sesion item in this.Conexiones)
+                {
+                    sb.AppendLine($"--> {item.ToString()}");
+                }
+            }
+            else
+            {
+                sb.AppendLine("No hay conexiones.");
+            }
             return sb.ToString();
 
         }
 
 
-        public void AniadirPuesto(Puesto puesto)
+        public void AniadirPuesto(Cabina puesto)
         {
-            this.Puestos.Add(puesto);
+            this.Cabinas.Add(puesto);
         }
 
         public void AniadirCliente(Cliente cliente)
@@ -94,22 +119,6 @@ namespace Entidades
             return retorno;
         }
 
-        public List<Puesto> PuestosFiltradosPorEstado(Enumerados.EstadoPuesto estadoPuesto)
-        {
-            List<Puesto> retorno = new List<Puesto>();
-
-            foreach (Puesto puesto in this.Puestos)
-            {
-                if(puesto.Estado == estadoPuesto)
-                {
-                    retorno.Add(puesto);
-                }
-            }
-
-            return retorno;
-        }
-
-
         public bool AbrirSesion(Puesto puesto, Cliente cliente, Enumerados.TiposDeSesion tipo, String numero) 
         {
             bool retorno = false;
@@ -122,7 +131,7 @@ namespace Entidades
                         if (cliente == (Computadora)puesto && cliente.Estado == Enumerados.EstadoCliente.esperandoComputadora)
                         {
                             Conexion conexion = new Conexion(puesto, cliente);
-                            this.Sesiones.Add(conexion);
+                            this.Conexiones.Add(conexion);
                             retorno = true;
                         }
                         break;
@@ -130,7 +139,7 @@ namespace Entidades
                         if (numero.Length == 12 && cliente.Estado == Enumerados.EstadoCliente.esperandoCabina)
                         {
                             Llamada llamada = new Llamada(puesto, cliente, numero);
-                            this.Sesiones.Add(llamada);
+                            this.Llamadas.Add(llamada);
                             retorno = true;
                         }
                         break;
@@ -140,25 +149,35 @@ namespace Entidades
             return retorno;
         }
 
-
-
-
         public bool CerrarSesion(Sesion sesion)
         {
             bool retorno = false;
 
-            if(sesion.Puesto.Estado == Enumerados.EstadoPuesto.EnUso && 
+            if(!(sesion is null) && sesion.Puesto.Estado == Enumerados.EstadoPuesto.EnUso && 
               (sesion.Cliente.Estado == Enumerados.EstadoCliente.ubicadoComputadora || sesion.Cliente.Estado == Enumerados.EstadoCliente.ubicadoTelefono))
             {
                 sesion.Puesto.Estado = Enumerados.EstadoPuesto.Libre;
                 sesion.Cliente.Estado = Enumerados.EstadoCliente.fuera;
                 //sesion.HoraFinal = DateTime.Now;
                 //this.horaInicio = new DateTime(2021, 10, 04, 22, 30, 00); 
+                sesion.Cliente.OrdenDeLlegadaCabina = -1;
+                sesion.Cliente.OrdenDeLlegadaComputadora = -1;
+
+
                 sesion.HoraFinal = new DateTime(2021, 10, 04, 22, 30, 31);
                 sesion.Duracion = sesion.CalcularDuracion();
                 sesion.Costo = sesion.Puesto.CalculoCosto(sesion);
                 Historico.Sesiones.Add(sesion);
-                this.Sesiones.Remove(sesion);
+                if(sesion is Llamada)
+                {
+                    this.Llamadas.Remove((Llamada)sesion);
+                }
+                else
+                {
+                    this.Conexiones.Remove((Conexion)sesion);
+
+                }
+
                 retorno = true;
                 
             }
@@ -189,6 +208,7 @@ namespace Entidades
             ValidadorListas.AniadirJuego(c9.JuegoNecesita, Enumerados.Juegos.LineageII);
             ValidadorListas.AniadirJuego(c9.JuegoNecesita, Enumerados.Juegos.CounterStrike);
             ValidadorListas.AniadirPrograma(c9.ProgramaNecesita, Enumerados.Programas.ares);
+            ValidadorListas.EditarCaracteristica(c9.CaracteristicasNecesita, Enumerados.CaracteristicasComputadora.ram, "8gb");
 
             List<Cliente> listaClientes = new List<Cliente>() {c1, c2, c3, c4, c5, c6, c7, c8, c9};
 
@@ -220,10 +240,11 @@ namespace Entidades
             ValidadorListas.AniadirPeriferico(comp4.Periferico, Enumerados.Perifericos.auriculares);
             ValidadorListas.AniadirPeriferico(comp4.Periferico, Enumerados.Perifericos.microfono);
 
-            List<Puesto> listaPuestos = new List<Puesto>() { cab1, cab2, cab3, comp1, comp2, comp3, comp4 };
+            List<Cabina> listaCabinas = new List<Cabina>() { cab1, cab2, cab3 };
+            List<Computadora> listaComputadoras = new List<Computadora> { comp1, comp2, comp3, comp4 };
 
 
-            procesador = new Procesador("Rus", listaPuestos, listaClientes);
+            procesador = new Procesador("Rus", listaCabinas, listaComputadoras, listaClientes);
 
             return procesador;
 
