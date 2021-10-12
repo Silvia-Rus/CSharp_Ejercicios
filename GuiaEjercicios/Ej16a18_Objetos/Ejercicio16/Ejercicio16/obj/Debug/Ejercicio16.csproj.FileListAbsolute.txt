@@ -1,0 +1,7 @@
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej16a18_Objetos\Ejercicio16\Ejercicio16\bin\Debug\Ejercicio16.exe.config
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej16a18_Objetos\Ejercicio16\Ejercicio16\bin\Debug\Ejercicio16.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej16a18_Objetos\Ejercicio16\Ejercicio16\bin\Debug\Ejercicio16.pdb
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej16a18_Objetos\Ejercicio16\Ejercicio16\obj\Debug\Ejercicio16.csproj.AssemblyReference.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej16a18_Objetos\Ejercicio16\Ejercicio16\obj\Debug\Ejercicio16.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej16a18_Objetos\Ejercicio16\Ejercicio16\obj\Debug\Ejercicio16.exe
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\GuiaEjercicios\Ej16a18_Objetos\Ejercicio16\Ejercicio16\obj\Debug\Ejercicio16.pdb

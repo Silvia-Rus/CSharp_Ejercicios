@@ -130,6 +130,47 @@ namespace Entidades
             }
         }
 
+        public static int EsElSiguienteParaCabinas( List<Cliente> lista, Cliente cliente)
+        {
+            int retorno = -1;
+
+            if(!(lista is null))
+            {
+                retorno = 1;
+
+                foreach (Cliente item in lista)
+                {
+                    if(item.Estado == Enumerados.EstadoCliente.esperandoCabina && (item.ordenDeLlegadaCabina < cliente.ordenDeLlegadaCabina))
+                    {
+                        retorno = 0;
+                        break;
+                    }
+                }
+            }
+
+            return retorno;
+        }
+
+        public static int EsElSiguienteParaComputadoras(List<Cliente> lista, Cliente cliente)
+        {
+            int retorno = -1;
+
+            if (!(lista is null))
+            {
+                retorno = 0;
+
+                foreach (Cliente item in lista)
+                {
+                    if (item.Estado == Enumerados.EstadoCliente.esperandoComputadora && (item.ordenDeLlegadaComputadora > cliente.ordenDeLlegadaComputadora))
+                    {
+                        retorno = 1;
+                        break;
+                    }
+                }
+            }
+
+            return retorno;
+        }
         public static void AsignarOrdenDeLlegadaCabina(Cliente cliente)
         {
             cliente.ordenDeLlegadaCabina = nextCabina;

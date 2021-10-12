@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmIntroducirNumero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIntroducirNumero.Designer.cs">
+      <DependentUpon>FrmIntroducirNumero.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmComputadoras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEstadisticas.resx">
       <DependentUpon>FrmEstadisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIntroducirNumero.resx">
+      <DependentUpon>FrmIntroducirNumero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>

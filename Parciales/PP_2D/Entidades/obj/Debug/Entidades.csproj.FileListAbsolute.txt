@@ -1,6 +1,6 @@
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\bin\Debug\Entidades.dll
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\bin\Debug\Entidades.pdb
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\obj\Debug\Entidades.dll
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Entidades\obj\Debug\Entidades.pdb

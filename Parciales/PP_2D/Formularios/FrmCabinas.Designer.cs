@@ -223,6 +223,7 @@ namespace Formularios
             this.gridClientesEnEspera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridClientesEnEspera.Size = new System.Drawing.Size(290, 379);
             this.gridClientesEnEspera.TabIndex = 6;
+            this.gridClientesEnEspera.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClientesEnEspera_CellContentDoubleClick);
             // 
             // gridLlamadasEnCurso
             // 
@@ -266,6 +267,7 @@ namespace Formularios
             this.gridLlamadasEnCurso.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridLlamadasEnCurso.Size = new System.Drawing.Size(365, 379);
             this.gridLlamadasEnCurso.TabIndex = 7;
+            this.gridLlamadasEnCurso.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLlamadasEnCurso_CellContentDoubleClick);
             // 
             // lblLlamadasEnCurso
             // 

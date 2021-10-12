@@ -1,11 +1,17 @@
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Formularios.exe.config
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Formularios.exe
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Formularios.pdb
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Entidades.dll
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\MetroFramework.Design.dll
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\MetroFramework.dll
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\MetroFramework.Fonts.dll
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Entidades.pdb
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.csproj.AssemblyReference.cache
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmCabinas.resources
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmComputadoras.resources
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmDirectorio.resources
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmEstadisticas.resources
+\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmIntroducirNumero.resources
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmPrincipal.resources
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.Properties.Resources.resources
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.csproj.GenerateResource.cache
@@ -13,8 +19,3 @@
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.csproj.CopyComplete
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.exe
 \\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.pdb
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Entidades.dll
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\bin\Debug\Entidades.pdb
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmDirectorio.resources
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmEstadisticas.resources
-\\vmware-host\Shared Folders\Escritorio\CSharp_Ejercicios\Parciales\PP_2D\Formularios\obj\Debug\Formularios.FrmComputadoras.resources

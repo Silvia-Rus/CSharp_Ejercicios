@@ -26,6 +26,53 @@ namespace Entidades
             }
             nextId++;
         }
+       
+        public static Cabina SiguienteCabinaLibre(List<Cabina> collection)
+        {
+            Cabina retorno = null;
+
+            if(!(collection is null) && Puesto.HayPuestosLibres(ConvertidorCabinaAAux(collection)))
+            {
+                foreach (Cabina item in collection)
+                {
+                    if(item.Estado == Enumerados.EstadoPuesto.Libre)
+                    {
+                        retorno = item;
+                        break;
+                    }
+                }
+
+            }
+            
+
+            return retorno;
+        }
+
+        public static bool EsNumeroValido(string numero)
+        {
+            bool retorno = false;
+
+            if (numero.Length == 12 && long.TryParse(numero, out long aux) && aux > -1)
+            {
+                    retorno = true;
+                
+            }
+
+
+            return retorno;
+        }
+
+        public static List<Puesto> ConvertidorCabinaAAux(List<Cabina> lista)
+        {
+            List<Puesto> retorno = new List<Puesto>();
+
+            foreach (Cabina item in lista)
+            {
+                retorno.Add(item);
+            }
+
+            return retorno;
+        }
 
 
 

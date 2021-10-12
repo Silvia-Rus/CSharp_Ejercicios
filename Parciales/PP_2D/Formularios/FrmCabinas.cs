@@ -17,7 +17,7 @@ namespace Formularios
     {
         Procesador procesador; 
         
-        public Procesador ObtenerProcesador { get => procesador; }
+        public Procesador ObtenerProcesador { get => this.procesador; }
         private FrmCabinas()
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace Formularios
                 dataGrid.DataSource = procesador.Cabinas;
                 FrmPrincipal.FormatoGeneralGrid(dataGrid);
                 FrmCabinas.FormatoGridCabinas(dataGrid);
-                FrmPrincipal.FiltrarGridPuestosPorEstado(dataGrid, ConvertidorCabinaAAux(procesador.Cabinas), estadoPuesto);
+                FrmPrincipal.FiltrarGridPuestosPorEstado(dataGrid, Cabina.ConvertidorCabinaAAux(procesador.Cabinas), estadoPuesto);
             }
            
         }
@@ -65,17 +65,7 @@ namespace Formularios
             }
         }
 
-        private static List<Puesto> ConvertidorCabinaAAux(List<Cabina> lista)
-        {
-            List<Puesto> retorno = new List<Puesto>();
-
-            foreach (Cabina item in lista)
-            {
-                retorno.Add(item);
-            }
-
-            return retorno;
-        }
+       
 
         private void FrmCabinas_Load(object sender, EventArgs e)
         {
@@ -100,6 +90,8 @@ namespace Formularios
            }
 
         }
+
+       
 
         private static void FormatoGridClientes(DataGridView dataGrid)
         {
@@ -127,5 +119,65 @@ namespace Formularios
             }
         }
 
+        private void AbrirSesion(Cliente cliente, Cabina cabina)
+        {
+            FrmIntroducirNumero frmIntroducirNumero = new FrmIntroducirNumero();
+            
+
+            if(DialogResult.OK == frmIntroducirNumero.ShowDialog())
+            {
+                String numero = frmIntroducirNumero.ObtenerNumero;
+                if (!(numero is null) && procesador.AbrirSesion(cabina, cliente, Enumerados.TiposDeSesion.llamada, numero))
+                {
+                    MessageBox.Show($"Cabina asignada: {cabina.Id}");
+                }
+            }
+        }
+        
+
+        private void gridClientesEnEspera_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            Cliente auxCliente = this.procesador.Clientes[this.gridClientesEnEspera.CurrentRow.Index];
+            Cabina auxCabina = Cabina.SiguienteCabinaLibre(procesador.Cabinas);
+
+            if(Puesto.HayPuestosLibres(Cabina.ConvertidorCabinaAAux(procesador.Cabinas)))
+            {
+                if(Cliente.EsElSiguienteParaCabinas(procesador.Clientes, auxCliente) == 1)
+                {
+                    this.AbrirSesion(auxCliente, auxCabina);
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("El cliente seleccionado no es el siguiente en la fila.\n¿Desea asignarle una cabina igualmente?", "¡ATENCIÓN!", MessageBoxButtons.YesNo);
+
+                    if(dialogResult == DialogResult.Yes)
+                    {
+                        this.AbrirSesion(auxCliente, auxCabina);
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay cabinas libres.");
+            }
+
+            CargaGrids();
+        }
+
+        private void gridLlamadasEnCurso_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Sesion auxSesion = this.procesador.Llamadas[this.gridLlamadasEnCurso.CurrentRow.Index];
+
+            DialogResult dialogResult = MessageBox.Show($"¿Está seguro de que desea cerrar la sesión en la cabina {auxSesion.Puesto.Id}?");
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                procesador.CerrarSesion(auxSesion);
+            }
+
+            CargaGrids();
+        }
     }
 }

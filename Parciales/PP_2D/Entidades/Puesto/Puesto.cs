@@ -81,6 +81,23 @@ namespace Entidades
 
         abstract  public double CalculoCosto(Sesion sesion);
 
+        public static bool HayPuestosLibres(List<Puesto> collection)
+        {
+            bool retorno = false;
+
+            foreach (Puesto item in collection)
+            {
+                if(item.Estado == Enumerados.EstadoPuesto.Libre)
+                {
+                    retorno = true;
+                    break;
+                }
+            }
+            return retorno;
+        }
+
+
+
 
     }
 }

@@ -31,7 +31,7 @@ namespace Formularios
         private void btnCabinas_Click(object sender, EventArgs e)
         {
             FrmCabinas frmCabinas = new FrmCabinas(procesador);
-            if (frmCabinas.ShowDialog() == DialogResult.OK)
+            if (frmCabinas.ShowDialog() == DialogResult.OK && !(frmCabinas.ObtenerProcesador is null))
             {
                 this.procesador = frmCabinas.ObtenerProcesador;
             }
